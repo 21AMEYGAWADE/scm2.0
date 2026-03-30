@@ -1,3 +1,6 @@
+    npx tailwindcss -i src/main/resources/static/css/input.css -o src/main/resources/static/css/output.css  
+npx @tailwindcss/cli -i ./src/main/resources/static/css/input.css -o ./src/main/resources/static/css/output.css --watch
+
 i) If you want tailwindcss on any page
     npx @tailwindcss/cli -i src/main/resources/static/css/input.css -o src/main/resources/static/css/output.css --watch --content src/main/resources/templates/**/*.html 
 
