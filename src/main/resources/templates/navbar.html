@@ -1,0 +1,97 @@
+<nav th:fragment="navbar" class="bg-white dark:bg-gray-900 w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-700">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+
+    <!-- Logo -->
+    <a class="flex items-center space-x-3 rtl:space-x-reverse" data-th-src="@{'/'}">
+        <img data-th-src="@{'/images/telephone.png'}" class="h-7 rounded-full " alt="SCM Logo">
+        <span class="self-center text-xl font-semibold whitespace-nowrap text-gray-900 dark:text-white">SCM 2.0</span>
+    </a>
+
+    <!-- Right side buttons -->
+    <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+
+        <!-- CTA Button -->
+        <div class="flex gap-4">
+
+          <!-- Dark light Toggle Button -->
+          <button id="theme_change_button"
+                 class="bg-gray-600 px-3 py-2 rounded text-white font-bold focus:outline-none focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-600">            
+            <i class="fa-solid fa-circle-half-stroke"></i>
+            <span>Theme</span>
+          </button>
+
+          <a type="button" data-th-href="@{'/login'}"
+            class="text-white bg-gray-800 hover:bg-gray-900 
+                  dark:bg-blue-500 dark:hover:bg-blue-600
+                  focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800
+                  font-medium rounded text-sm px-4 py-2 focus:outline-none">
+            Login
+          </a>
+
+          <a type="button" data-th-href="@{'/register'}"
+            class="text-white bg-gray-800 hover:bg-gray-900 
+                  dark:bg-blue-500 dark:hover:bg-blue-600
+                  focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800
+                  font-medium rounded text-sm px-4 py-2 focus:outline-none">
+            Register
+          </a>
+        </div>
+
+
+        <!-- Mobile menu button -->
+        <button data-collapse-toggle="navbar-sticky" type="button"
+          class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded md:hidden
+                 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700
+                 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-600"
+          aria-controls="navbar-sticky" aria-expanded="false">
+          
+            <span class="sr-only">Open main menu</span>
+
+            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none"
+              viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-width="2"
+                d="M5 7h14M5 12h14M5 17h14"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Menu -->
+    <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+      <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-200 rounded bg-gray-50
+                 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0
+                 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+
+        <li>
+          <a data-th-href="@{'/home'}" class="block py-2 px-3 text-white bg-blue-600 rounded md:bg-transparent md:text-blue-600 md:p-0">
+            Home
+          </a>
+        </li>
+
+        <li>
+          <a data-th-href="@{'/about'}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100
+                             md:hover:bg-transparent md:hover:text-blue-600 md:p-0
+                             dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+            About
+          </a>
+        </li>
+
+        <li>
+          <a data-th-href="@{'/services'}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100
+                             md:hover:bg-transparent md:hover:text-blue-600 md:p-0
+                             dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+            Services
+          </a>
+        </li>
+
+        <li>
+          <a data-th-href="@{'/contact'}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100
+                             md:hover:bg-transparent md:hover:text-blue-600 md:p-0
+                             dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+            Contact
+          </a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
