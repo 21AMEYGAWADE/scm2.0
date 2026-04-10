@@ -12,9 +12,98 @@
 
 <body>
     <div id="content">
-        <h1 class="text-3xl font-bold mb-4">Welcome to Our Sign Up Page</h1>   
-        <h2>Our Mission</h2>
-        <p class="text-green-500">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed amet quam ipsam, 
+        <!-- grid of 12 columns -->
+        <div class="grid grid-cols-12">
+            <!-- grid of 4 columns -->
+        
+            <div class="col-span-4 md:col-span-2 lg:col-span-3 xl:col-span-4"></div>
+            <div class="col-span-12 md:col-span-4 lg:col-span-6 xl:col-span-4">
+                
+                <div href="#" class="rounded-2xl border-t-[10px] border-blue-800 bg-neutral-primary-soft block max-w-sm p-6 border border-default rounded-base shadow-xs hover:bg-neutral-secondary-medium">
+                    <h5 class="mb-3 text-2xl font-semibold tracking-tight text-heading leading-8">Sign Up Here!</h5>
+                    <p class="text-body">Start Managing Contacts Today!</p>
+
+                    <!-- This is the signup form -->
+                    <form th:object="${userForm}" data-th-action="@{/do-register}" method="post" class="mt-5">
+                        <!-- Name -->
+                        <div class="mb-3">
+                            <label for="name" class="block mb-2.5 text-sm font-medium text-heading">Name</label>
+                            <!-- is used for binding object of UserForm -->
+                            <input 
+                                th:field="*{name}" 
+                                type="text" id="name" 
+                                class="rounded-xl bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body" 
+                                placeholder="Enter Name here" 
+                                required />
+                        </div>
+
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label for="email" class="block mb-2.5 text-sm font-medium text-heading">Email</label>
+                            <input 
+                                th:field="*{email}"
+                                type="email" 
+                                id="email" 
+                                class="rounded-xl bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body" 
+                                placeholder="Enter Email here" 
+                                required />
+                        </div>
+
+                        <!-- Password -->
+                        <div class="mb-3">
+                            <label for="password" class="block mb-2.5 text-sm font-medium text-heading">Password</label>
+                            <input 
+                                th:field="*{password}"
+                                type="password" 
+                                id="password" 
+                                class="rounded-xl bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body" 
+                                placeholder="Enter Password here" 
+                                required />
+                        </div>
+
+                        <!-- Phone Number -->
+                        <div class="mb-3">
+                            <label for="phone" class="block mb-2.5 text-sm font-medium text-heading">Contact Number</label>
+                            <input 
+                                th:field="*{phoneNumber}"
+                                type="text" 
+                                id="phone" 
+                                class="rounded-xl bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body" 
+                                placeholder="Enter Phone Number here" 
+                                required />
+                        </div>
+
+                        <!-- Textarea-->    
+                        <div class="mb-3">
+                            <label for="message" class="block mb-2.5 text-sm font-medium text-heading">Write Something about yourself</label>
+                            <textarea 
+                                th:field="*{about}"
+                                id="message" 
+                                rows="4" 
+                                class="rounded-xl bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full p-3.5 shadow-xs placeholder:text-body" 
+                                placeholder="Write here..."></textarea>
+                        </div>
+
+                        <!-- buttons -->
+                         <div class="flex justify-center mb-3 space-x-3">
+                            <button 
+                                type="submit" 
+                                class="text-white bg-gray-500 hover:bg-blue-800 dark:bg-gray-700 dark:hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 rounded-xl text-sm px-4 py-2.5">
+                                Sign Up
+                            </button>
+                            <button
+                                type="reset"
+                                class="text-white bg-orange-500 hover:bg-orange-800 dark:bg-orange-700 dark:hover:bg-orange-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 rounded-xl text-sm px-4 py-2.5">
+                                Reset
+                            </button>
+                         </div>
+                    </form>
+
+                </div>
+
+            </div>
+            <div class="col-span-4"></div>
+        </div>
     </div>
     <script>
         console.log("Welcome to signup page");

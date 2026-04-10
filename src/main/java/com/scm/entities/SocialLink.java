@@ -1,6 +1,9 @@
 package com.scm.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,7 +17,13 @@ import lombok.Setter;
 @Entity
 @Builder
 public class SocialLink {
+    @Id
+    @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     private Long id;
     private String link;
     private String title;
+
+    //connecting the social link with the contact
+    @ManyToOne
+    private Contact contact;
 }
