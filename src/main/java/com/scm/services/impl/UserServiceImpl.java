@@ -2,6 +2,7 @@ package com.scm.services.impl;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,8 +26,12 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public com.scm.entities.User saveUser(com.scm.entities.User user) {
+    public User saveUser(User user) {
+        String userId=UUID.randomUUID().toString();
+        user.setUserId(userId);
+        user.setProfilePic("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png");
         return userRepo.save(user);
+
     }
 
     @Override
@@ -56,26 +61,27 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(String id) {
-        // Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteUser'");
+        User user2 = userRepo.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
+        userRepo.delete(user2);
     }
 
     @Override
     public boolean isUserExists(String userId) {
-        // Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isUserExists'");
+        User user2 = userRepo.findById(userId).orElse(null);
+        return user2 != null ? true : false;
+
     }
 
     @Override
     public boolean isUserExistsByEmail(String email) {
-        // Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isUserExistsByEmail'");
+        User user2 = userRepo.findByEmail(email).orElse(null);
+        return user2 != null ? true : false;
     }
 
     @Override
     public List<com.scm.entities.User> getAllUsers() {
-        // Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllUsers'");
+        return userRepo.findAll();
     }
 
 }

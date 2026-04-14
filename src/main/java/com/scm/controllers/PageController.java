@@ -1,12 +1,17 @@
 package com.scm.controllers;
 
-import org.springframework.boot.webmvc.autoconfigure.WebMvcProperties.Apiversion.Use;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import com.scm.entities.User;
 import com.scm.forms.UserForm;
+import com.scm.helper.Message;
+import com.scm.helper.MessageType;
+import com.scm.services.UserService;
+
+import jakarta.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,6 +19,10 @@ import org.springframework.ui.Model;
 
 @Controller
 public class PageController {
+
+    @Autowired
+    private UserService userService;
+
 
     // Home page 
     @RequestMapping("/home")
@@ -69,16 +78,45 @@ public class PageController {
     
     //Processing Registration form data
     @RequestMapping(value = "/do-register", method = RequestMethod.POST)
-    public String processRegister(@ModelAttribute UserForm userForm) {
+    public String processRegister(@ModelAttribute UserForm userForm,HttpSession session) {
         System.out.println("processing registration form data");
 
         //fetch data
-
+        System.out.println(userForm);
         //validate form
         //save in db
+
+        
+        // User user = User.builder()
+        // .name(userForm.getName())
+        // .email(userForm.getEmail())
+        // .password(userForm.getPassword())
+        // .about(userForm.getAbout())
+        // .phoneNumber(userForm.getPhoneNumber())
+        // .profilePic("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png")
+        // .build();
+
+        User user = new User();
+        user.setName(userForm.getName());
+        user.setEmail(userForm.getEmail());
+        user.setPassword(userForm.getPassword());
+        user.setAbout(userForm.getAbout());
+        user.setPhoneNumber(userForm.getPhoneNumber());
+        user.setProfilePic("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png");
+        
+
+
+        User savedUser = userService.saveUser(user);
+
+        System.out.println(savedUser);
+
         //message success
+        Message message = Message.builder().content("Registration Successfull").type(MessageType.green).build();
+        session.setAttribute("message", message);
+
+
         //redirect after processing the registration form data
-        return "redirect:/login";
+        return "redirect:/register";
     }
 
 
