@@ -12,10 +12,12 @@ import com.scm.helper.MessageType;
 import com.scm.services.UserService;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 
 @Controller
 public class PageController {
@@ -78,12 +80,20 @@ public class PageController {
     
     //Processing Registration form data
     @RequestMapping(value = "/do-register", method = RequestMethod.POST)
-    public String processRegister(@ModelAttribute UserForm userForm,HttpSession session) {
+
+    //Valid for validating the form data and BindingResult for handling the validation errors
+    public String processRegister(@Valid @ModelAttribute UserForm userForm,BindingResult bindingResult ,HttpSession session) {
         System.out.println("processing registration form data");
 
         //fetch data
         System.out.println(userForm);
         //validate form
+
+        if(bindingResult.hasErrors()){
+            System.out.println("validation errors: " + bindingResult.getAllErrors());
+            return "register";
+        }
+
         //save in db
 
         

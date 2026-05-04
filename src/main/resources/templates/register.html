@@ -25,7 +25,12 @@
                     <p class="text-body">Start Managing Contacts Today!</p>
 
                     <!-- This is the signup form -->
-                    <form th:object="${userForm}" data-th-action="@{/do-register}" method="post" class="mt-5">
+                    <form 
+                        th:object="${userForm}" 
+                        data-th-action="@{/do-register}" 
+                        method="post" class="mt-5"
+                        novalidate
+                        >
                         <!-- Name -->
                         <div class="mb-3">
                             <label for="name" class="block mb-2.5 text-sm font-medium text-heading">Name</label>
@@ -36,6 +41,11 @@
                                 class="rounded-xl bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body" 
                                 placeholder="Enter Name here" 
                                 required />
+
+                                <p class="text-red-500 text-sm mt-1" 
+                                    th:if="${#fields.hasErrors('name')}" 
+                                    th:errors="*{name}">Name Error
+                                </p>
                         </div>
 
                         <!-- Email -->
@@ -48,6 +58,10 @@
                                 class="rounded-xl bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body" 
                                 placeholder="Enter Email here" 
                                 required />
+                                <p class="text-red-500 text-sm mt-1" 
+                                    th:if="${#fields.hasErrors('email')}" 
+                                    th:errors="*{email}">Email Error
+                                </p>
                         </div>
 
                         <!-- Password -->
@@ -60,6 +74,10 @@
                                 class="rounded-xl bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body" 
                                 placeholder="Enter Password here" 
                                 required />
+                                <p class="text-red-500 text-sm mt-1" 
+                                    th:if="${#fields.hasErrors('password')}" 
+                                    th:errors="*{password}">Password Error
+                                </p>
                         </div>
 
                         <!-- Phone Number -->
@@ -72,6 +90,10 @@
                                 class="rounded-xl bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body" 
                                 placeholder="Enter Phone Number here" 
                                 required />
+                                <p class="text-red-500 text-sm mt-1" 
+                                    th:if="${#fields.hasErrors('phoneNumber')}" 
+                                    th:errors="*{phoneNumber}">Phone Number Error
+                                </p>
                         </div>
 
                         <!-- Textarea-->    
@@ -83,6 +105,9 @@
                                 rows="4" 
                                 class="rounded-xl bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full p-3.5 shadow-xs placeholder:text-body" 
                                 placeholder="Write here..."></textarea>
+                                <p class="text-red-500 text-sm mt-1" 
+                                    th:if="${#fields.hasErrors('about')}" 
+                                    th:errors="*{about}">About Error
                         </div>
 
                         <!-- buttons -->
